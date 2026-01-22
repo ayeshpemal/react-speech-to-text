@@ -88,7 +88,7 @@ export default function useSpeechToText({
 
   useEffect(() => {
     if (!crossBrowser && !recognition) {
-      setError('Speech Recognition API is only available on Chrome');
+      setError('Speech Recognition API is only available on Chrome and Edge');
     }
 
     if (!navigator?.mediaDevices?.getUserMedia) {
@@ -132,7 +132,7 @@ export default function useSpeechToText({
       recognition.start();
 
       // speech successfully translated into text
-      recognition.onresult = (e) => {
+      recognition.onresult = (e: SpeechRecognitionEvent) => {
         const result = e.results[e.results.length - 1];
         const { transcript } = result[0];
 
