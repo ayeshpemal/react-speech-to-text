@@ -3,12 +3,8 @@
     "outDir": "dist",
     "sourceMap": true,
     "declaration": true,
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "target": "es2020",
+    "lib": ["dom", "dom.iterable", "es2020"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -24,7 +20,5 @@
     "noEmit": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": [
-    "src/hooks"
-  ]
+  "include": ["src/hooks"]
 }

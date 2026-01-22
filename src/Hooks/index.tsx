@@ -14,8 +14,6 @@ export interface SpeechRecognitionProperties {
   maxAlternatives?: number;
 }
 
-const isEdgeChromium = navigator.userAgent.indexOf('Edg/') !== -1;
-
 interface BraveNavigator extends Navigator {
   brave: {
     isBrave: () => Promise<boolean>;
@@ -46,7 +44,7 @@ if ((navigator as BraveNavigator).brave) {
 // Chromium browsers will have the SpeechRecognition method
 // but do not implement the functionality due to google wanting 💰
 // this covers new Edge and line 22 covers Brave, the two most popular non-chrome chromium browsers
-if (!isEdgeChromium && SpeechRecognition) {
+if (SpeechRecognition) {
   recognition = new SpeechRecognition();
 }
 
@@ -90,7 +88,9 @@ export default function useSpeechToText({
 
   useEffect(() => {
     if (!crossBrowser && !recognition) {
-      setError('Speech Recognition API is only available on Chrome');
+      setError(
+        'Speech Recognition API is only available on Chrome and Edge browsers'
+      );
     }
 
     if (!navigator?.mediaDevices?.getUserMedia) {
